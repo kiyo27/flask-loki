@@ -1,5 +1,7 @@
 version: '3'
 
+volumes:
+  app_data: {}
 services:
   api:
     build: .
@@ -10,5 +12,23 @@ services:
     # tty: true
     environment:
       - FLASK_ENV=development
+    volumes:
+      - app_data:/var/log
     command: flask run --host=0.0.0.0
+
+  promtail:
+    image: grafana/promtail:1.6.1
+    volumes:
+      - app_data:/var/log
+      - ./promtail:/etc/promtail
+    ports:
+      - "9080:9080"
+    command: -config.file=/etc/promtail/promtail-local-config.yaml
+
+  loki:
+    image: grafana/loki:1.6.1
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
     
