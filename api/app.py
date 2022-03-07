@@ -14,5 +14,5 @@ app.logger.addHandler(handler)
 
 @app.route("/")
 def index():
-    app.logger.debug("A value for debugging")
-    return "success"
+    app.logger.warn("A value for warning.")
+    return "warn"

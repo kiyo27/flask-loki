@@ -15,4 +15,5 @@ scrape_configs:
       - localhost
     labels:
       job: varlogs
+      env: dev
       __path__: /var/log/*log

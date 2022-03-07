@@ -9,11 +9,10 @@ services:
       - "5001:5000"
     volumes:
       - ./api:/usr/src/api
+      - app_data:/var/log
     # tty: true
     environment:
       - FLASK_ENV=development
-    volumes:
-      - app_data:/var/log
     command: flask run --host=0.0.0.0
 
   promtail:
@@ -31,4 +30,18 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
 
-    
+  grafana:
+    image: grafana/grafana:8.3.0
+    ports:
+      - "3000:3000"
+
+  localstack:
+    image: localstack/localstack:0.14.0
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp}/localstack:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
