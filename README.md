@@ -14,14 +14,16 @@ flaskのLogging
 - [いまさらながら Flask についてまとめる 〜Logging〜](https://www.subarunari.com/entry/2017/10/07/014911)
 
 
+## Loki
+
+- [Configuration](https://grafana.com/docs/loki/latest/configuration/)
+
+
 ## Promtail
 
 Promtailを使ってGrafana Lokiにログを送信する
 
 - [Get Logs into Grafana Loki](https://grafana.com/docs/loki/latest/getting-started/get-logs-into-loki/)
-
-
-## Promtail
 
 - [Label](https://grafana.com/docs/loki/next/fundamentals/labels/)
 

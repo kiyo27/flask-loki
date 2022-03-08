@@ -28,6 +28,11 @@ services:
     image: grafana/loki:1.6.1
     ports:
       - "3100:3100"
+    volumes:
+      - ./loki:/etc/loki
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
     command: -config.file=/etc/loki/local-config.yaml
 
   grafana:
